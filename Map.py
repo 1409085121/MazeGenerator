@@ -22,7 +22,6 @@ class Map:
 
     def new_connection(self, node1, node2):
         if not abs(node1.x - node2.x) + abs(node1.y - node2.y) == 1:
-            print(abs(node1.x - node2.x) + abs(node1.y - node2.y))
             raise ValueError("Nodes do not intersect")
 
         connection = Connection(self)
@@ -72,10 +71,6 @@ class Map:
                     self.nodeList.append(Node(x, y))
         self.generate_border()
 
-        for x in range(self.width):
-            for y in range(self.height):
-                print(self.get_node(x, y).connections_count, end=" ")
-            print()
 
         # Start with a linear walk from the edge,
         # dividing the map into several areas

@@ -26,7 +26,7 @@ class UI:
         self.canvas = Canvas(self.root, bg='white')
         self.canvas.pack(fill=BOTH, expand=True)
 
-        self.bt1 = Button(self.frame1, text="Fast generate", command=self.fast_generate)
+        self.bt1 = Button(self.frame1, text="Random generate", command=self.random_generate)
         self.bt1.pack(side=LEFT)
         self.bt2 = Button(self.frame1, text="Save", command=self.save_as_file)
         self.bt2.pack(side=LEFT)
@@ -121,7 +121,7 @@ class UI:
             height=self.gridWidth
         )
 
-    def fast_generate(self):
+    def random_generate(self):
         self.map = Map(self.mapWidth, self.mapHeight)
         self.map.generate_maze()
         self.canvas.delete("all")
@@ -168,10 +168,6 @@ Move the cursor to the end point (E) and start generating a maze. Press the "Cus
 
             self.map.new_invisible_connection(node3, node4)
 
-        for x in range(self.map.width):
-            for y in range(self.map.height):
-                print(self.map.get_node(x, y).connections_count, end=" ")
-            print()
         self.map.generate_maze(initialize=False)
         self.display()
 
