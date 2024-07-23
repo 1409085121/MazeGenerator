@@ -1,6 +1,7 @@
 import os
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 from Map import *
 from PIL import Image, ImageDraw
 
@@ -29,7 +30,7 @@ class UI:
         self.bt1.pack(side=LEFT)
         self.bt2 = Button(self.frame1, text="Save", command=self.save_as_file)
         self.bt2.pack(side=LEFT)
-        self.bt3 = Button(self.frame1, text="Custom generate", command=self.start_draw_path)
+        self.bt3 = Button(self.frame1, text="Custom generate (drawing path)", command=self.start_draw_path)
         self.bt3.pack(side=LEFT)
 
 
@@ -133,7 +134,20 @@ class UI:
         self.cursorPosition = [0, 0]
         self.path_drawing_ui()
 
+        self.bt1.config(state="disabled")
+        self.bt2.config(state="disabled")
+        messagebox.showinfo("Start",
+            '''start drawing path:
+Use the up, down, left, and right keys to move the cursor to draw the pattern you want.
+Move the cursor to the end point (E) and start generating a maze. Press the "Custom generate (drawing path)" button again to redraw.
+            '''
+        )
+
     def custom_generate(self):
+
+        self.bt1.config(state="normal")
+        self.bt2.config(state="normal")
+
         for i in range(len(self.nodesOnPath)-1):
             node1 = self.nodesOnPath[i]
             node2 = self.nodesOnPath[i+1]
